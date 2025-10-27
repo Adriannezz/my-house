@@ -16,79 +16,61 @@ public class Picture
     private Triangle roof;
     private Circle sun;
     private Circle moon;
-    
-    /**
-     * Constructor for objects of class Picture
-     */
+    private Square grass;
+
     public Picture()
     {
-        // nothing to do... instance variables are automatically set to null
+        wall = new Square();
+        window = new Square();
+        roof = new Triangle();
+        sun = new Circle();
+        moon = new Circle();
+        grass = new Square();
     }
 
-    /**
-     * Draw this picture.
-     */
     public void draw()
     {
-        wall = new Square();
+        // --- CASA ---
         wall.moveHorizontal(-140);
         wall.moveVertical(20);
         wall.changeSize(120);
         wall.makeVisible();
-        
-        window = new Square();
+
         window.changeColor("black");
         window.moveHorizontal(-120);
         window.moveVertical(40);
-        window.changeSize(40);
         window.makeVisible();
 
-        roof = new Triangle();  
         roof.changeSize(60, 180);
         roof.moveHorizontal(20);
         roof.moveVertical(-60);
         roof.makeVisible();
 
-        sun = new Circle();
+        // --- CÉSPED ---
+        grass.changeColor("green");
+        grass.moveHorizontal(-310);
+        grass.moveVertical(140);
+        grass.changeSize(600);
+        grass.makeVisible();
+
+        // --- SOL ---
         sun.changeColor("yellow");
         sun.moveHorizontal(100);
-        sun.moveVertical(-40);
-        sun.changeSize(80);
+        sun.moveVertical(-80);  // empieza arriba
+        sun.changeSize(60);
         sun.makeVisible();
-        
-        moon = new Circle();
+
+        // --- LUNA ---
+        moon.changeColor("grey");
+        moon.moveHorizontal(100);
+        moon.moveVertical(200); // empieza debajo de la escena
+        moon.changeSize(60);
+
+        // --- Animación: sol baja hasta desaparecer ---
+        sun.slowMoveVertical(300);
+        // --- Cuando el sol ha desaparecido, aparece la luna ---
         moon.makeVisible();
-        moon.changeColor("magenta");
-        moon.moveHorizontal (-170);
-    
-    
-    }
 
-    /**
-     * Change this picture to black/white display
-     */
-    public void setBlackAndWhite()
-    {
-        if (wall != null)   // only if it's painted already...
-        {
-            wall.changeColor("black");
-            window.changeColor("white");
-            roof.changeColor("black");
-            sun.changeColor("black");
-        }
+        // --- Animación: luna sube lentamente ---
+        moon.slowMoveVertical(-230); }
     }
-
-    /**
-     * Change this picture to use color display
-     */
-    public void setColor()
-    {
-        if (wall != null)   // only if it's painted already...
-        {
-            wall.changeColor("red");
-            window.changeColor("black");
-            roof.changeColor("green");
-            sun.changeColor("yellow");
-        }
-    }
-}
