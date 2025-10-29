@@ -17,6 +17,8 @@ public class Picture
     private Circle sun;
     private Circle moon;
     private Square grass;
+    private Person person1;
+    private Person person2;
 
     public Picture()
     {
@@ -26,6 +28,8 @@ public class Picture
         sun = new Circle();
         moon = new Circle();
         grass = new Square();
+        person1 = new Person();
+        person2 = new Person();
     }
 
     public void draw()
@@ -65,12 +69,36 @@ public class Picture
         moon.moveHorizontal(100);
         moon.moveVertical(200); // empieza debajo de la escena
         moon.changeSize(60);
-
+        
         // --- Animación: sol baja hasta desaparecer ---
         sun.slowMoveVertical(300);
         // --- Cuando el sol ha desaparecido, aparece la luna ---
         moon.makeVisible();
 
         // --- Animación: luna sube lentamente ---
-        moon.slowMoveVertical(-230); }
+        moon.slowMoveVertical(-230);
     }
+    
+        public void amanecer()
+    {
+        moon.makeInvisible();
+        
+        person1.changeColor("black");
+        person1.makeVisible();
+        person1.moveHorizontal(-320);
+        person1.moveVertical(30);
+        person1.slowMoveHorizontal(190);
+        
+        person2.changeColor("Yellow");
+        person2.makeVisible();
+        person2.moveHorizontal(200);
+        person2.moveVertical(30);
+        person2.slowMoveHorizontal(-160);
+
+        // --- Animación: sol baja hasta desaparecer ---
+        sun.slowMoveVertical(-200);
+        
+        
+    }
+}
+
